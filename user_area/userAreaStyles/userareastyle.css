@@ -1,0 +1,114 @@
+.navbar-default {
+   
+    border-bottom:4px solid black!important;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #bf4080;
+
+    }
+
+.btn-lg.style{
+        border-radius: 0px;
+        background-color:#993366;
+       
+      }
+
+.btn-lg.style:hover{
+        background-color: #bf4080;
+    }
+hr.hr-style  {
+        border: none;
+        height: 2px;
+        /* Set the hr color */
+        color:#993366; /* old IE */
+        background-color: #993366; /* Modern Browsers */
+    }
+ 
+    /* for html tags*/
+.list-group-item{
+  background-color:#643074;
+  border:1px solid #d65c99;;
+  
+  }
+  .list-group-horizontal .list-group-item {
+    display: inline-block;
+}
+.list-group-horizontal .list-group-item {
+	margin-bottom: 0;
+	margin-left:-4px;
+	margin-right: 0;
+}
+.list-group-horizontal .list-group-item:first-child {
+	border-top-right-radius:0;
+	border-bottom-left-radius:4px;
+}
+.list-group-horizontal .list-group-item:last-child {
+	border-top-right-radius:4px;
+	border-bottom-left-radius:0;
+}
+  
+/* given to all input fields*/
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+input[type="file"]:focus,
+select:focus,
+.uneditable-input:focus {   
+  border-color: #d65c99;
+  box-shadow: 0 1px 1px #f7b2d4 inset, 0 0 8px #f7b2d4;
+  outline: 0 none;
+  border-radius:0px;
+  
+} 
+.form-control.style{
+    height:50px;
+    border-radius: 0px;
+ 
+  }
+/*for select in segment create*/
+  .form-control.style2{
+    height:50px;
+    border-radius:0px;
+
+  }
+  .form-control.style2:focus{
+    border-color: #d65c99;
+  box-shadow: 0 1px 1px #f7b2d4 inset, 0 0 8px #f7b2d4;
+  outline: 0 none;
+  border-radius:0px;
+
+  }
+
+  .panel-default{
+    border-color:#d65c99;
+  }
+
+  /*Model style*/
+
+  .modal-content.style{
+    border-radius: 0px;
+  }
+    
+  /*jumbotron in campaign page*/
+  .jumbotron.styling{
+    background: #cc99ff;
+    color:white;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius:0px;
+    
+  }
+  

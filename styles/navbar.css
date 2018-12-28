@@ -1,0 +1,38 @@
+#nav_header
+{
+  background-color: white;
+  color: black;
+}
+
+ #mynav > .navbar-nav > li#nav_head > a#nav_link 
+{
+  color: black;
+  font-size: 18px;
+  font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,Verdana,sans-serif;
+
+  
+}
+
+
+ #mynav > .navbar-nav > li#nav_head > a#nav_link:hover , .navbar-nav > li#nav_head > a#nav_link:focus
+{
+  background-color:#f2f2f2;
+  display: block;
+  font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,Verdana,sans-serif;
+  
+}
+
+ #mynav > .navbar-nav > li#nav_head > a#nav_link:hover:after
+{
+   color:#bf4080;
+   content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    right: 18px;
+    height: 3px;
+    background: #bf4080;
+  
+}
+

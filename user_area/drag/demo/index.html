@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="assets/css/demo.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.1/jquery.rateyo.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>jQuery formBuilder/formRender Demo</title>
+</head>
+
+<body>
+  
+    <script>
+        // document.getElementById("edit").children[0].style.display = "none";
+      
+        // document.getElementsByClassName('input-set-control input-set-0 ui-sortable-handle')[0].style.visibility = 'hidden';
+        $(document).ready(function() {
+  $("#frmb-1539600768900-control-box li:lt(13)").hide()
+});
+//15        
+
+        </script>
+  <div class="content">
+    <h1>jQuery formBuilder</h1>
+    <div id="stage1" class="build-wrap"></div>
+    <form class="render-wrap"></form>
+    <button id="edit-form">Edit Form</button>
+    <div class="action-buttons">
+      <h2>Actions</h2>
+      <button id="showData" type="button" hidden>Show Data</button>
+      <button id="clearFields" type="button" hidden>Clear All Fields</button>
+      <button id="getData" type="button" hidden>Get Data</button>
+      <button id="getXML" type="button" >Get HTML Code</button>
+      <button id="getJSON" type="button" hidden>Get JSON Data</button>
+      <button id="getJS" type="button" hidden>Get JS Data</button>
+      <button id="setData" type="button" hidden>Set Data</button>
+      <button id="addField" type="button" hidden>Add Field</button>
+      <button id="removeField" type="button" hidden>Remove Field</button>
+      <button id="testSubmit" type="submit" hidden>Test Submit</button>
+      <button id="resetDemo" type="button" hidden>Reset Demo</button>
+
+      <div>
+        <textarea id="code" rows="20" cols="80" style="border:none;">
+
+        </textarea>
+
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/vendor.js"></script>
+  <script src="assets/js/form-builder.min.js"></script>
+  <script src="assets/js/form-render.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.1/jquery.rateyo.min.js"></script>
+  <script src="assets/js/demo.js"></script>
+
+</body>
+
+</html>
