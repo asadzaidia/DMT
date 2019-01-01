@@ -10,7 +10,7 @@ if(isset($_SESSION['username'])){
 }
 else{
 
-    echo "no session created";
+    echo "<script>window.open('../index.php','_self')</script>";
 }
 
 

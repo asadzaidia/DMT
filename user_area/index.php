@@ -13,7 +13,7 @@ if(isset($_SESSION['username'])){
 	}
  else{
 
- 	echo "no session created";
+	echo "<script>window.open('../index.php','_self')</script>";
  }
 
  ?>
@@ -76,6 +76,8 @@ if(isset($_SESSION['username'])){
 							$camp_title=$rows['camp_title'];
 							$segment_id=$rows['segment_id'];
 							$segment_type_id=$rows['segment_type_id'];
+							
+
 							$segmenttype="";
 							$segmentName="";
 		
@@ -105,8 +107,9 @@ if(isset($_SESSION['username'])){
 							$campaign_id_crypted=url_crypt($campaign_id,'e');
 							$segment_id_crypted=url_crypt($segment_id,'e');
 							$segment_type_id_crypted=url_crypt($segment_type_id,'e');
-		
-							echo
+
+							if($segment_type_id==1){
+								echo
 								"
 								
 							<div class='jumbotron styling container'>
@@ -135,9 +138,43 @@ if(isset($_SESSION['username'])){
 					
 								
 								";
-						}
+						}else{
+							//mobile type
+							echo
+							"
+							
+						<div class='jumbotron styling container'>
+							<div class='col-md-12'>
+									<div class='col-md-8'>
+										
+									<h2>Mobile Campaign&nbsp;<span class='badge' style='background:-moz-linear-gradient();'>$segmenttype</span></h2>
+									<p><span class='badge' style='background:#D4AF37;border-radius:0px;font-size: 20px;'>
+										Campaign Send On: $start_date</span></p>
+										<p><span class='badge' style='background:#777455;border-radius:0px;font-size: 20px;'>
+												To: $segmentName</span></p>
+									</div>
+								
+	
+									<div class='col-md-4'>
+										<center>
+										<a href='campaign_statistics.php?a=$campaign_id_crypted&&b=$segment_id_crypted&&c=$segment_type_id_crypted' style='text-decoration: none;'><img src='../images/stats4.png' height='150' width='170' alt='View Statistics'/>
+										<p style='color:white;'>View Statistics</p></a>
+										</center>
+										
+									</div>	
+								</div>
+						</div>
+					
+					
+				
+							
+							";
 
+						}
 					}
+				}
+
+
 					else{
 						echo "
 						<div class='jumbotron styling container'>

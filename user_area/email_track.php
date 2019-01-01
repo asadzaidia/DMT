@@ -2,7 +2,7 @@
 session_start();
 include('../connection/conn.php');
 include('../functions/function.php');
-debug_to_console("agaya!");
+
 
 if(isset($_GET['code'])){
     debug_to_console("agaya2!");

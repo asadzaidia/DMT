@@ -103,7 +103,7 @@ if(isset($_POST['register'])){
 
 				if($runq_3){
 					$_SESSION['username']=$username;
-				echo "<script>window.open('user_area/user_area.php','_self')</script>";
+				echo "<script>window.open('user_area/index.php','_self')</script>";
 				
 				}
 

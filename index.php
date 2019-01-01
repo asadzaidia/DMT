@@ -1,3 +1,13 @@
+<?php
+ session_start();
+if(isset($_SESSION['username'])){
+  //inactivity constraint
+  echo "<script>window.open('user_area/index.php','_self')</script>";
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>

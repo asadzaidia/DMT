@@ -22,7 +22,7 @@ if(isset($_POST['login'])){
 		$username=$row['username'];
 	 	$_SESSION['username']=$username;
 	 	$_SESSION['last_login_time']=time();
-		echo "<script>window.open('user_area/user_area.php','_self')</script>";
+		echo "<script>window.open('user_area/index.php','_self')</script>";
 	 }
 
 

@@ -26,7 +26,7 @@ $un=$_SESSION['username'];
           
                  <div class="collapse navbar-collapse" id="mynav">
                  <ul class="nav navbar-nav">
-                   <li><a href="campaign.php" >Campaigns</a></li>
+                   <li><a href="index.php" >Campaigns</a></li>
                    <li><a href="templates.php" >Templates</a></li>
                    <li><a href="segment.php" >Segment</a></li>
                    <li><a href="Api_docs.php" >API Doc's</a></li>

@@ -12,7 +12,7 @@ if(isset($_SESSION['username'])){
        debug_to_console($s_id);
   }
  else{
- 	echo "no session created";
+  echo "<script>window.open('../index.php','_self')</script>";
  }
  ?>
 

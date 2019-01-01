@@ -62,17 +62,20 @@ if(strlen($test)>0){
         //inserting into campaign table after successfully send campaign
         $not_valid_emails=mb_substr($not_valid_emails, 0, -1);
         
-        $query2="insert into campaigns(start_date,camp_title,Description,segment_id,Not_valid_emails,segment_type_id,Userid)
-        values(NOW(),'$subject','$body','$s_id','$not_valid_emails','$s_type','$id')";
-        $runq_4=mysqli_query($conn,$query2);
+      
 
+        $query2="insert into campaigns(start_date,camp_title,Description,segment_id,Not_valid_emails,
+          segment_type_id,Userid,invalid_numbers,countM)
+          values(NOW(),'$subject','$body','$s_id','$not_valid_emails','$s_type','$id','-',0)";
+         
+          $runq_4=mysqli_query($conn,$query2);
 		if($runq_4){
 
             //query for email_open_tracking
             $last_id = mysqli_insert_id($conn);
-            debug_to_console($last_id);
+            // debug_to_console($last_id);
 			
-		echo "<script>window.open('campaign.php?success=Campaign Sucessfully Send!','_self')</script>";
+		echo "<script>window.open('index.php?success=Campaign Sucessfully Send!','_self')</script>";
 				
             };
 
@@ -102,9 +105,11 @@ else{
        
         $not_valid_emails=mb_substr($not_valid_emails, 0, -1);
         
-        $query3="insert into campaigns(start_date,camp_title,Description,segment_id,Not_valid_emails,segment_type_id,Userid)
-        values(NOW(),'$subject','$body','$s_id','$not_valid_emails','$s_type','$id')";
-        $runq_5=mysqli_query($conn,$query3);
+        $query3="insert into campaigns(start_date,camp_title,Description,segment_id,Not_valid_emails,
+          segment_type_id,Userid,invalid_numbers,countM)
+          values(NOW(),'$subject','$body','$s_id','$not_valid_emails','$s_type','$id','-',0)";
+         
+          $runq_5=mysqli_query($conn,$query3);
 
 		if($runq_5){
             $latest_campaign_id = mysqli_insert_id($conn);
@@ -116,7 +121,7 @@ else{
                 values('$latest_campaign_id','$s_id','$email','$code',0)";
                 $ru=mysqli_query($conn,$quer);
                 if($ru){
-                    echo "<script>window.open('campaign.php?success=Campaign Sucessfully Send!','_self')</script>";
+                    echo "<script>window.open('index.php?success=Campaign Sucessfully Send!','_self')</script>";
                 }
                 
 

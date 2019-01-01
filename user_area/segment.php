@@ -8,10 +8,11 @@ if(isset($_SESSION['username'])){
 	//inactivity constraint
 	  $aa=$_SESSION['username'];
 	  $id= getID($aa);
+	  
   }
  else{
 
- 	echo "no session created";
+	echo "<script>window.open('../index.php','_self')</script>";
  }
  ?>
 <!DOCTYPE html>
@@ -97,7 +98,7 @@ if(isset($_SESSION['username'])){
 			<br>
 				
 				<div class='panel panel-default' style="border-color:forestgreen;margin-left:5px;margin-right:5px;">
-			  	<div class='panel-body' style='min-height: 600px; max-height: 600px;overflow-y: scroll;'>
+			  	<div class='panel-body' style='min-height: 700px; max-height: 700px;overflow-y: scroll;'>
 
 				
 <?php
