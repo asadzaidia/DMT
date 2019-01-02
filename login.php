@@ -54,7 +54,7 @@ if(isset($_SESSION['username'])){
 								</div>
 							</form>
 							<br>
-							<a href="#">Forgot Password?</a>
+							<a href="forgot.php">Forgot Password?</a>
 
 							
 						</div>
