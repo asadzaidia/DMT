@@ -1,13 +1,13 @@
 
                              
-                                function getEID(x){
+        function getEID(x){
                                   
-                                    var id=x;
+            var id=x;
 	        //call to get api of clicked segment
             if(confirm('Are You sure?')){
 
 	            $.ajax({
-                url:"deleteEmail.php",
+                url:"usercodes/deleteEmail.php",
                 method:"POST",
                 data:{
                 EID:id
@@ -33,7 +33,7 @@
             if(confirm('Are You sure?')){
 
 	            $.ajax({
-                url:"deleteMobile.php",
+                url:"usercodes/deleteMobile.php",
                 method:"POST",
                 data:{
                 MID:id

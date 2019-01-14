@@ -18,7 +18,7 @@ if(isset($_SESSION['username'])){
     <?php  include('../includes/header_includes.php'); ?>
     <link rel="stylesheet" href="userAreaStyles/userareastyle.css">
      <link rel="stylesheet" href="userAreaStyles/template.css">
-    <title>The Marketer</title>
+    <title>Campaign Bird</title>
 
   </head>
   <body>

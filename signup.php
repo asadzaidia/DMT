@@ -15,6 +15,7 @@ if(isset($_SESSION['username'])){
 		<link rel="stylesheet" href="styles/foot.css">
 		<script src="js/signup.js"></script>
 		<title>Signup</title>
+		<link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
 
 	</head>
 

@@ -17,7 +17,7 @@ if(isset($_SESSION['username'])){
 		<link rel="stylesheet" href="styles/foot.css">
 		<script src="js/login.js"></script>
 		<title>Login</title>
-
+		<link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
 	</head>
 
 	<body>

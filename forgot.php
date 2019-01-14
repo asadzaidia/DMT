@@ -15,14 +15,24 @@ if(isset($_SESSION['username'])){
 		<link rel="stylesheet" href="styles/style.css">
 		<link rel="stylesheet" href="styles/navbar.css">
         <link rel="stylesheet" href="styles/foot.css">
-        <link rel="stylesheet" href="user_area/userAreaStyles/userareastyle.css">
-		<title>Forgot Password</title>
+     
+        <title>Forgot Password</title>
+        <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
+
+        <style>
+            
+        .panel-default{
+            border-color:#d65c99;
+         }
+
+
+        </style>
 
 	</head>
 
 	<body>
 			
-			<?php include('includes/navbar.php');  ?>
+		<?php include('includes/navbar.php');  ?>
         <p style="margin-top:80px;"></p>   
 			<div class="container">
 				<div class="row">

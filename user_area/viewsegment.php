@@ -2,6 +2,10 @@
 session_start();
 include('../connection/conn.php');
 include('../functions/function.php');
+include('../functions/verifyEmail.php');
+$vmail = new verifyEmail(); 
+$vmail->setStreamTimeoutWait(50); 
+$vmail->Debugoutput= 'html';
 
 //getting id from function getID which used SP
 if(isset($_SESSION['username'])){
@@ -18,8 +22,8 @@ if(isset($_SESSION['username'])){
         $segment_created=date("d-M-y", strtotime($rows['created_on']));
         $segment_type_id=$rows['segment_type_id'];
     }
-       debug_to_console($segment_type_id);
-    //    debug_to_console($s_type);
+    
+   
 
   }
  else{
@@ -33,7 +37,7 @@ if(isset($_SESSION['username'])){
     <?php  include('../includes/header_includes.php'); ?>
     <link rel="stylesheet" href="userAreaStyles/userareastyle.css">
     
-    <title>The Marketer</title>
+    <title>Campaign Bird</title>
 
   </head>
 
@@ -70,8 +74,15 @@ if(isset($_SESSION['username'])){
                                         //from email type segment
                                         $sql2= "select * from email_type where segment_id='$s_id'";
                                         $run2=mysqli_query($conn,$sql2);
-                         
+                                        $label='';
                                     while($row=mysqli_fetch_array($run2)){
+                                        if(@!$vmail->check($row['Email'])){
+                                            $label='<span class="label label-danger">Invalid</span>';
+                                            
+                                        }
+                                        else{
+                                            $label='<span class="label label-success">Valid</span>'; 
+                                        }
 
                                         $a=$row['Email'];
                                         $b=date("d-M-y", strtotime($row['registerdates']));
@@ -79,7 +90,7 @@ if(isset($_SESSION['username'])){
 
                                         echo "
                                         <tr id='delete$c'>
-                                        <td>$a</td>
+                                        <td>$a       $label</td>
                                         <td>$b</td>
                                         <td><span><button class='btn btn-danger' 
                                         style='border-radius:0px;text-decoration: none;' value='$c'
@@ -94,16 +105,22 @@ if(isset($_SESSION['username'])){
                                         //from mobile type segment
                                         $sql2= "select * from mobile_type where segment_id='$s_id'";
                                         $run2=mysqli_query($conn,$sql2);
+                                        $label='';
                          
                                     while($row=mysqli_fetch_array($run2)){
-
+                                        
+                                        if(strlen($row['Number'])>12){
+                                        $label='<span class="label label-danger">Invalid</span>';
+                                        }else{
+                                            $label='<span class="label label-success">Valid</span>';
+                                        }
                                         $a=$row['Number'];
                                         $b=date("d-M-y", strtotime($row['registerdate']));
                                         $c=$row['MID'];
 
                                         echo "
                                         <tr id='delete$c'>
-                                        <td>$a</td>
+                                        <td>$a    $label</td>
                                         <td>$b</td>
                                         <td><span><button class='btn btn-danger' 
                                         style='border-radius:0px;text-decoration: none;' value='$c'

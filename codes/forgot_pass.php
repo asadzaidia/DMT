@@ -55,7 +55,7 @@ error.innerHTML='$err';</script>";
        <br />
            <center>
            
-           <h1 style='."color:blue".'>&copy;2019 by Campaing Bird</h1>
+           <p style="color:blue;font-size:20px;">&copy;2019 by Campaing Bird</p></center>
            </center>
 
    ';

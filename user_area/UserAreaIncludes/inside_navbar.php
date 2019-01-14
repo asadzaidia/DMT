@@ -6,8 +6,9 @@ $un=$_SESSION['username'];
 ?>
            
            <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
+           
                 <div class="container-fluid">
+                  <div class="container">
                  <!--logo-->
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynav">
@@ -15,12 +16,13 @@ $un=$_SESSION['username'];
                    <span class="icon-bar"></span>
                    <span class="icon-bar"></span> 
                   </button> 
-                  <a class="navbar-brand" href="user_area.php">
-                    <img src="../images/logo.png" style="margin-top: -42px;" height="110">
+                  
+                  <a class="navbar-brand" href="index.php">
+                    <img src="../images/logo.png" alt="logo" style="margin-top: -25px;" height="80">
                   </a>
                 </div> 
 
-                 
+               
 
                <!--links-->
           
@@ -36,10 +38,10 @@ $un=$_SESSION['username'];
                  <ul class="nav navbar-nav navbar-right">
                   
                    <li><a href="../logout.php"><span class="glyphicon glyphicon-log-out" ></span>SignOut</a></li>
-                   <li><p style="color:  #bf4080;font-weight: bold;font-size:20px;margin-top: 10px;"><?php echo $un; ?></p></li>
+                   <li><p style="color:  #bf4080;font-weight: bold;font-size:20px;margin-top: 25px;"><?php echo $un; ?></p></li>
                    
                  </ul>
                  </div>   
-                 </div>
+</div>
                </div>
             </nav> 

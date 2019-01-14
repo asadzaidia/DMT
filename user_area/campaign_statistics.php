@@ -43,7 +43,7 @@ if(isset($_SESSION['username'])){
   <head>
     <?php  include('../includes/header_includes.php'); ?>
     <link rel="stylesheet" href="userAreaStyles/userareastyle.css">
-    <title>The Marketer</title>
+    <title>Campaign Bird</title>
 
       <style>
       /*For input type file for email sender*/
@@ -107,13 +107,22 @@ if(isset($_SESSION['username'])){
                                     $run2=mysqli_query($conn,$query2);
                                     $count=mysqli_num_rows($run2);
                                     if($count>0){
+                                      $sid_crypted=url_crypt($s_id,'e');
                                       while($rows=mysqli_fetch_array($run2)){
                                         $flag=$rows['dup'];
+                                        
                                       echo "
                                 <li class='list-group-item' 
                                 style='background-color:white;border:1px solid black;'>$flag</li>
+                                
                                         ";
                                       }
+                                      echo"
+                                      <li class='list-group-item' 
+                                      style='background-color:white;border:1px solid black;'>
+                                    <a href='viewsegment.php?a=$sid_crypted' class='btn btn-danger'>Remove Duplication</a></li>
+                                      
+                                      ";
                                     }else{
                                       echo "
                                       <li class='list-group-item' 
@@ -123,7 +132,11 @@ if(isset($_SESSION['username'])){
                                     }
                                    
                                   }
-                                  echo "</ul>
+                                  
+                                  echo "
+                                  
+                                    
+                                  </ul>
 
                                       
                                       
@@ -143,7 +156,7 @@ if(isset($_SESSION['username'])){
                                     ";
                                        
                                         
-                                          if(count($nv)>1){
+                                          if(count($nv)>0){
                                             echo '<ul class="list-group">';
                                             foreach($nv as $n ){
                                               echo "
@@ -190,8 +203,9 @@ if(isset($_SESSION['username'])){
                               <tr>
                                 
                                   <th><strong>Email</strong></th>
+                                  <th><strong>Viewed on DateTime</strong></th>
                                 <th><strong>Viewed By User</strong></th>
-                                <th><strong>Viewed on DateTime</strong></th>
+                                
                                   
                                 
                                 
@@ -206,12 +220,15 @@ if(isset($_SESSION['username'])){
                                 while($row=mysqli_fetch_array($run)){
                                   $a=$row['email'];
                                   $b=$row['open'];
+                                  $datetime=$row['datetime'];
                                   echo "
                                   <tr>
                                   <td>$a</td>
+                                  
                                   ";
                                   if($b==0){
                                     echo "
+                                    <td>-</td>
                                     <td>
                                     <label style='background:red;'>Not Viewed!</label>
                                     
@@ -220,6 +237,7 @@ if(isset($_SESSION['username'])){
                                     ";
                                   }else{
                                     echo "
+                                    <td>$datetime</td>
                                     <td>
                                     <label style='background:green;'>Viewed!</label>
                                     
@@ -298,13 +316,21 @@ if(isset($_SESSION['username'])){
                                     $run2=mysqli_query($conn,$query2);
                                     $count=mysqli_num_rows($run2);
                                     if($count>0){
+                                      $sid_crypted=url_crypt($s_id,'e');
                                       while($rows=mysqli_fetch_array($run2)){
+                                        
                                         $flag=$rows['dup'];
                                       echo "
                                 <li class='list-group-item' 
                                 style='background-color:white;border:1px solid black;'>$flag</li>
                                         ";
                                       }
+                                      echo"
+                                      <li class='list-group-item' 
+                                      style='background-color:white;border:1px solid black;'>
+                                    <a href='viewsegment.php?a=$sid_crypted' class='btn btn-danger'>Remove Duplication</a></li>
+                                      
+                                      ";
                                     }else{
                                       echo "
                                       <li class='list-group-item' 
@@ -334,7 +360,7 @@ if(isset($_SESSION['username'])){
                                     ";
                                        
                                         
-                                          if(count($iv)>1){
+                                          if(count($iv)>0){
                                             echo '<ul class="list-group">';
                                             foreach($iv as $n ){
                                               echo "

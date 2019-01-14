@@ -22,7 +22,7 @@ if(isset($_SESSION['username'])){
   <head>
     <?php  include('../includes/header_includes.php'); ?>
     <link rel="stylesheet" href="userAreaStyles/userareastyle.css">
-    <title>The Marketer</title>
+    <title>Campaign Bird</title>
 
   </head>
 

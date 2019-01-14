@@ -17,6 +17,7 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" href="styles/foot.css">
     <script src="js/top.js"></script>
     <title>The Marketer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
 
   </head>
 
@@ -119,7 +120,7 @@ if(isset($_SESSION['username'])){
 
                  <form method="post" action=" ">
                  <div class="form-group">
-                   <input type="email" class="form-control newsletter-style" name="subscribe" required style="padding-left: 10px;">
+                   <input type="email" class="form-control newsletter-style" name="email" required style="padding-left: 10px;">
                  </div>
                  <center><button type="submit" class="btn btn-warning btn-lg newsletter-style" name="subscribe">Subscribe!</button></center>
                  <br><br>
@@ -138,3 +139,6 @@ if(isset($_SESSION['username'])){
   </body>
 
 </html>
+<?php 
+    	include('codes/sub_emails.php');
+?>

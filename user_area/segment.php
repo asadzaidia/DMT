@@ -8,7 +8,6 @@ if(isset($_SESSION['username'])){
 	//inactivity constraint
 	  $aa=$_SESSION['username'];
 	  $id= getID($aa);
-	  
   }
  else{
 
@@ -20,7 +19,8 @@ if(isset($_SESSION['username'])){
   <head>
     <?php  include('../includes/header_includes.php'); ?>
     <link rel="stylesheet" href="userAreaStyles/userareastyle.css">
-    <title>The Marketer</title>
+	<title>Campaign Bird</title>
+	<script src="js/segmentapi.js"></script>
 
   </head>
 
@@ -95,10 +95,7 @@ if(isset($_SESSION['username'])){
 				 }
 				 ?>
 				 <!-- On successfull deletion of segment-->
-			<br>
-				
-				<div class='panel panel-default' style="border-color:forestgreen;margin-left:5px;margin-right:5px;">
-			  	<div class='panel-body' style='min-height: 700px; max-height: 700px;overflow-y: scroll;'>
+				<br><br>
 
 				
 <?php
@@ -155,8 +152,6 @@ if(isset($_SESSION['username'])){
      		$conn->next_result();
 		}
 
-	
-
 		echo "
 		<div class='container'>
 		<div class='row'>
@@ -202,7 +197,8 @@ if(isset($_SESSION['username'])){
 				onclick='getAPI(this.value)'>API KEY</button></span>
 				
 				&nbsp;&nbsp;
-				<span><a href='segmentstats.php?a=$sid_crypted' class='btn btn-warning' style='border-radius:0px;margin-top:-20px;'>Stats</a></span>
+				<span><a href='segmentstats.php?a=$sid_crypted' class='btn btn-warning'
+				 style='border-radius:0px;margin-top:-20px;'>Statistics</a></span>
 
 				 &nbsp;&nbsp;
 				<span>
@@ -250,16 +246,12 @@ if(isset($_SESSION['username'])){
 		</div>
 
  </div>
- 
+ </div>
 		
 		";
 	}
 
 	?>	
-	</div>
-	</div>
-	
-	
 
 		 <!-- Body-->
 
@@ -297,29 +289,3 @@ if(isset($_SESSION['username'])){
   </body>
 
   </html>
-
-<script>
-
-	function getAPI(a){
-
-	var s_id=a;
-	//call to get api of clicked segment
-	$.ajax({
-            url:"get_api.php",
-            method:"POST",
-            data:{
-                segment_id:s_id
-            },
-            dataType:"text",
-            success:function(html){
-				console.log(html);
-				document.getElementById('apidata').innerHTML=html;
-      			  $('#APIMODEL').modal({show:true});
-            }
-        });
-   
-    
-
-	}
-
-</script>

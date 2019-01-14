@@ -57,7 +57,7 @@
 
   <div id="copyright">
      <div class="container-fluid bottom-line">
-      <h4 class="text-center">&copy;2018 by <a href="index.php" style="text-decoration: none;color:white;">The Marketer</a></h4>
+      <h4 class="text-center">&copy;2019 by <a href="index.php" style="text-decoration: none;color:white;">Campaign Bird</a></h4>
       <center><p>All Rights Reserved</p></center>
      </div>
   </div>
