@@ -14,6 +14,10 @@ include('connection/conn.php');
 
 // 	 echo "plain ".$plain;
 
+// $string="OK asad OK 7 OK 7";
+// echo $valid=substr_count($string,"OK");
+// echo $invalid=substr_count($string,"7");
+
 
 //finding dates of last seven days and saving it into an array.
 $lastsevendates=array();

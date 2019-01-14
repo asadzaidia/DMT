@@ -14,20 +14,23 @@ if(isset($_POST['send-sms'])){
     foreach($MobileList as $m){
       if(strlen($m)>12){
         $invalid_numbers.=$m.',';
+      }elseif(preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/',$m)){
+        $invalid_numbers.=$m.',';
       }else{
         $mobilenumbers.=$m.',';
 
       }
       
     }
-    $invalid_numbers=substr_replace($invalid_numbers ,"",-1);
+    
     $mobilenumbers=substr_replace($mobilenumbers ,"",-1);  
     //  debug_to_console($mobilenumbers);
+     $mb=explode(",",$mobilenumbers);
     //  debug_to_console($invalid_numbers);
-  
 
-
-    $post = "sender=".urlencode('Alert')."&mobile=".urlencode($mobilenumbers)."&message=".urlencode($sms)."";
+    $result='';
+  foreach($mb as $m){
+    $post = "sender=".urlencode('Alert')."&mobile=".urlencode($m)."&message=".urlencode($sms)."";
     $url = "https://sendpk.com/api/sms.php?username=923152574917&password=5384";
 
       
@@ -39,23 +42,35 @@ if(isset($_POST['send-sms'])){
         curl_setopt($ch, CURLOPT_POSTFIELDS,$post);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $result=curl_exec($ch); 
+        $a=curl_exec($ch);
+        if(substr_count($a,"7 :")>0){
+          $invalid_numbers.=$m.',';
+        }
+        $result.=$a;
+        curl_close($ch);
+  }
+  $invalid_numbers=substr_replace($invalid_numbers ,"",-1);
+  // debug_to_console($result);
+  $countvalid=substr_count($result,"OK");
+  // $countinvalid=substr_count($result,"7 :");
+  // debug_to_console($countvalid);
+  // debug_to_console($countinvalid);
 
-        if(curl_exec($ch)){
-          $count=substr_count($result,"OK"); 
+
+     
          
           $query2="insert into campaigns(start_date,camp_title,Description,segment_id,Not_valid_emails,
           segment_type_id,Userid,invalid_numbers,countM)
-          values(NOW(),'-','$sms','$s_id','-','$s_type','$id','$invalid_numbers','$count')";
+          values(NOW(),'-','$sms','$s_id','-','$s_type','$id','$invalid_numbers','$countvalid')";
          
           $runq_4=mysqli_query($conn,$query2);
   
       if($runq_4){
-        
-            echo "<script>window.open('index.php?success=Campaign Sucessfully Send!','_self')</script>";
             curl_close($ch);
+            echo "<script>window.open('index.php?success=Campaign Sucessfully Send!','_self')</script>";
+            
               };
-        }
+        
         
 
 

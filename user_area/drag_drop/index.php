@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Campaign Bird-Drag Drop Builder</title>
+    <link rel="shortcut icon"  type="image/png" href="../../images/logo.png" />
     <?php  include('../../includes/header_includes.php'); ?>
     <link rel="stylesheet" href="//unpkg.com/grapesjs@0.10.7/dist/css/grapes.min.css">
     <link rel="stylesheet" href="./style/material.css">

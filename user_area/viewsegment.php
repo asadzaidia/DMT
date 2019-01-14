@@ -111,6 +111,8 @@ if(isset($_SESSION['username'])){
                                         
                                         if(strlen($row['Number'])>12){
                                         $label='<span class="label label-danger">Invalid</span>';
+                                        }elseif(preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $row['Number'])){
+                                        $label='<span class="label label-danger">Invalid</span>';
                                         }else{
                                             $label='<span class="label label-success">Valid</span>';
                                         }

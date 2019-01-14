@@ -14,7 +14,9 @@ while($row = mysqli_fetch_assoc($result)) {
 foreach($MobileList as $m){
     if(strlen($m)>12){
         $invalid_contacts[]=$m;
-    }else{
+    }elseif(preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $m)){
+        $invalid_contacts[]=$m;
+      }else{
         $valid_contacts[]=$m;
 
     }
