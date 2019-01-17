@@ -36,7 +36,7 @@ if(isset($_SESSION['username'])){
 							<!-- inactivity error-->
 							
 							<h1 class="label label-danger" id="result"></h1>
-							<img class="img-responsive" src="images/logo.png" ></center>
+							<img class="img-responsive" alt="campaign bird" src="images/logo.png" ></center>
 							<center><h1 style="margin-top:-20px;">Login!</h1></center>
 							<hr class="hr-style">
 							<form action="" method="post">

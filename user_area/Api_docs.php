@@ -34,7 +34,7 @@ if(isset($_SESSION['username'])){
 					<div class="col-md-12">
 					<h1 class='page-header'>HTTP API</h1>
 					<div class="well">
-						<p style="font-size:15px;">http://localhost/dmt/apis/add_subs.php?content=XXX&&Apikey=XXXXXX</p>
+						<p style="font-size:15px;">http://campaignbird.tk/apis/add_subs.php?content=XXX&&Apikey=XXXXXX</p>
 						</div>
 						<p><strong>Apikey:</strong> is the apikey of your Segment</p>
 						<p><strong>content:</strong> is weather email or mobile number according to your Type of Segment.

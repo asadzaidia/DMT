@@ -28,9 +28,9 @@
   <div class="col-md-3 fcol">
     <h3 id="f-heading">Contact</h4>
     <hr class="footer">
-       <p id="para"><span class="glyphicon glyphicon-home " style="color:#bf4080;"></span> abc,Karachi </p>
-           <p id="para"><span class="glyphicon glyphicon-envelope " style="color:#bf4080;"></span> dmt@something.com</p>
-           <p id="para"><span class="glyphicon glyphicon-phone " style="color:#bf4080;"></span>0326-7869352</p>
+       <p id="para"  style="color:black;"><span class="glyphicon glyphicon-home " style="color:#bf4080;"></span> abc,Karachi </p>
+           <p id="para"  style="color:black;"><span class="glyphicon glyphicon-envelope " style="color:#bf4080;"></span> dmt@something.com</p>
+           <p id="para"  style="color:black;"><span class="glyphicon glyphicon-phone " style="color:#bf4080;"></span>0326-7869352</p>
           
   </div>
 </div><!--row-->
@@ -41,7 +41,8 @@
   </div><!--follow end-->
   <div class="col-md-6">
     <div class="icon" style="padding-top: 6.5%; text-align: center;">
-         <p id="sc_icon"> <a href="https://www.facebook.com/" class="sc_link"><i class="fab fa-3x fa-facebook-f text-white"></i></a>&nbsp;&nbsp;
+         <p id="sc_icon"> <a href="https://www.facebook.com/" class="sc_link">
+         <i class="fab fa-3x fa-facebook-f text-white"></i></a>&nbsp;&nbsp;
           <a href="https://twitter.com/" class="sc_link"><i class="fab fa-twitter-square fa-3x text-white"></i></a>
           &nbsp;&nbsp;
            <a href="https://www.linkedin.com/company/" class="sc_link"><i class="fab fa-3x fa-linkedin text-white"></i>

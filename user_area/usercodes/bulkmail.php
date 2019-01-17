@@ -20,7 +20,7 @@ $vmail->setStreamTimeoutWait(50);
 $id= getID($aa);
 // $vmail->Debug= TRUE; 
 $vmail->Debugoutput= 'html';
-$base_url='http://localhost/dmt/user_area/';
+$base_url='http://campaignbird.tk/user_area/';
 
 
 

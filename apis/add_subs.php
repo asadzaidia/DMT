@@ -22,7 +22,7 @@ $apikey=trimming($_GET['Apikey']);
 
     if($segment_type_id==1)
     {
-      if(eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $content)) { 
+      if(filter_var($content, FILTER_VALIDATE_EMAIL)) { 
 
         $sql1="insert into email_type(segment_id,Email,registerdates) values('$segment_id','$content',NOW())";
         $run1=mysqli_query($conn,$sql1);

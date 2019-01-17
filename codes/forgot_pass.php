@@ -19,8 +19,8 @@ error.innerHTML='$err';</script>";
    require 'user_area/phpmailer/PHPMailerAutoload.php';
    $mail=new PHPMailer(true);//exception handling
 
-   $mail->isSMTP();//using in localhost
-   // $mail->SMTPDebug = 2;
+//    $mail->isSMTP();//using in localhost
+//    $mail->SMTPDebug = 2;
    //stackoverflow to connect smtp server
    $mail->SMTPOptions = array(
    'ssl' => array(

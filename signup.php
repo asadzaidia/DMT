@@ -27,7 +27,7 @@ if(isset($_SESSION['username'])){
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-3">
-						<center><img class="img-responsive" src="images/logo.png" width="300" height="300" style="margin-top: 80px;"></center>
+						<center><img class="img-responsive" alt="campaign bird" src="images/logo.png" width="300" height="300" style="margin-top: 80px;"></center>
 						</div>
 						
 						<div class="col-md-9">
@@ -48,25 +48,25 @@ if(isset($_SESSION['username'])){
 									<div id="wait" style="display:none;">
           							 <center><img src="images/loader.gif" height="50" width="50" alt="loader"/></center>
             						</div>
-									<label class="design">Username</label>
+									<label for="username" class="design">Username</label>
 									<input type="text" class="form-control style" id="username" name="username" required autocomplete="off" onfocus="OnUserNamefocus()" onblur="onUserNameblur()" onkeypress="resultout()"><span id="availablity"></span>
 									</div>
 									<p style="font-size:12px; font-weight: bold; " id="un"></p>
 
 									<div class="form-group">
-									<label class="design">Email</label>
-									<input type="email" class="form-control style" name="email" required>
+									<label for="em" class="design">Email</label>
+									<input type="email" class="form-control style" id="em" name="email" required>
 									</div>
 
 									<div class="form-group">
-									<label class="design">Password</label>
-									<input type="password" class="form-control style" name="password" required onfocus="OnPasswordfocus()" onblur="onPasswordblur()">
+									<label for="pass" class="design">Password</label>
+									<input type="password" class="form-control style" id="pass" name="password" required onfocus="OnPasswordfocus()" onblur="onPasswordblur()">
 									</div>
 									<p style="font-size:12px; font-weight: bold;" id="password-hover"></p>
 
 									<div class="form-group">
-									<label class="design">Confirm Password</label>
-									<input type="password" class="form-control style" name="c-password" required>
+									<label for="c-pass" class="design">Confirm Password</label>
+									<input type="password" class="form-control style" id="c-pass" name="c-password" required>
 									</div>
 									<br>
 

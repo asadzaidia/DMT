@@ -185,14 +185,27 @@ if(isset($_SESSION['username'])){
 
                 </div>
 
-            </div>
+            </div>";
+
+            //total viewed count 
+            $countopen=0;
+            $qu="select count(EopenId) as countopen from email_open_tracking where campaign_id='$c_id' and s_id='$s_id' and open=1";
+            $ru=mysqli_query($conn,$qu);
+                                while($rowss=mysqli_fetch_array($ru)){
+                                 $countopen=$rowss['countopen']; 
+                                }
+            
+            
+        echo"
+
 
 
             <div class='row'>
               <div class='col-md-9 col-md-offset-1'>
                 <div class='panel panel-default' style='border-radius:0px;'>
                   <div class='panel-heading' style='background-color:#cc99ff;'>
-                      <label style='background:red;'>Total Emails Viewed! Count</label>
+                      <label style='background:red;'>Total Emails Viewed! 
+                       &nbsp;<span class='badge'>$countopen</span></label>
                    
                     </div>
 

@@ -1,6 +1,33 @@
 <?php
 include('functions/function.php');
 include('connection/conn.php');
+$email="asadzaidi625gmail.comsa";
+// function domain_exists($email, $record = 'MX'){
+// 	list($user, $domain) = explode('@', $email);
+// 	return checkdnsrr($domain, $record);
+// }
+// if(domain_exists($email)) {
+// 	echo('This MX records exists; I will accept this email as valid.');
+// }
+// else {
+// 	echo('No MX record exists;  Invalid email.');
+// }
+
+// if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//     echo "haigi";
+// }else{
+// 	echo "nai hai";
+// }
+
+if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+	echo "valid email";
+} 
+else{
+	echo "not valid mail";
+}
+
+
 // $pass="asadzaidi323232";
 // //encrypting Password
 // 	$encrypted_txt = encrypt_decrypt1('encrypt', $pass);
