@@ -34,7 +34,7 @@ if(isset($_SESSION['username'])){
 					<div class="col-md-12">
 					<h1 class='page-header'>HTTP API</h1>
 					<div class="well">
-						<p style="font-size:15px;">http://campaignbird.tk/apis/add_subs.php?content=XXX&&Apikey=XXXXXX</p>
+						<p style="font-size:13px;">http://campaignbird.tk/apis/add_subs.php?content=XXX&&Apikey=XXXXXX</p>
 						</div>
 						<p><strong>Apikey:</strong> is the apikey of your Segment</p>
 						<p><strong>content:</strong> is weather email or mobile number according to your Type of Segment.
@@ -58,7 +58,9 @@ if(isset($_SESSION['username'])){
         <h4 class="modal-title" id="modal-header">Node.js Example</h4>
       </div>
       <div class="modal-body" id="html">
+      <div style="overflow-x: scroll;"> 
       <xmp>
+       
 const apikey='XXXX';	
 
 // POST method route
@@ -85,8 +87,9 @@ if(err)
 
     });
   });
-			
-			</xmp>
+
+      </xmp>
+      </div>
       </div>
       <div class="modal-footer">
         
@@ -107,6 +110,7 @@ if(err)
         <h4 class="modal-title" id="modal-header">PHP Example</h4>
       </div>
       <div class="modal-body" id="html">
+      <div style="overflow-x: scroll;"> 
       <xmp>
 if(isset($_POST['submit']))
 	{
@@ -126,6 +130,7 @@ curl_close($ch);
 
 
 </xmp>
+</div>
       </div>
       <div class="modal-footer">
         

@@ -60,7 +60,7 @@ if(isset($_SESSION['username'])){
 						</div>
 
 						<div class="col-md-12 col-md-7">
-							<img class="img-responsive" src="images/login.jpg">
+							<img class="hidden-xs img-responsive" src="images/login.jpg">
 						</div>
 
 					</div>
