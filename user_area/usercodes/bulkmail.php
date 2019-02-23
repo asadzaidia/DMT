@@ -18,7 +18,7 @@ $track_code_array=array();
 
 $id= getID($aa);
 
-$base_url='http://campaignbird.tk/user_area/';
+$base_url='http://localhost/dmt/user_area/';
 
 
 
@@ -48,7 +48,7 @@ if(isset($_POST['send-mail'])){
 
 
 if(strlen($test)>0){
-    foreach($EmailList as $email){
+    foreach($EmailList as $index =>$email){
     $status;
     $query2="select status from viemails where email='$email'";
     $result2 = mysqli_query($conn,$query2);
@@ -67,7 +67,7 @@ if(strlen($test)>0){
     
     //now checking valid or invalid if status==0 means valid if status==1 means invalid
     if($status==0){
-        sendmailwithAttachment($un,$body,$subject,$email); 
+        sendmailwithAttachment($un,$body,$subject,$email,$EmailID[$index]); 
     }
     if($status==1){
        
@@ -84,7 +84,7 @@ if(strlen($test)>0){
         // echo "and valid" .$email;
         $query3="insert into viemails(email,status) values('$email','0')";
         $result3 = mysqli_query($conn,$query3);
-        sendmailwithAttachment($un,$body,$subject,$email);  
+        sendmailwithAttachment($un,$body,$subject,$email,$EmailID[$index]);  
     }
     if($verification->result_integer==1){//invalid valid
         // echo "and invalid" .$email;
@@ -140,7 +140,8 @@ if(strlen($test)>0){
 }
 else{
 
-    foreach($EmailList as $email){
+    // $codes as $index => $code
+    foreach($EmailList as $index =>$email ){
         $status;
         $query2="select status from viemails where email='$email'";
         $result2 = mysqli_query($conn,$query2);
@@ -159,7 +160,7 @@ else{
         
         //now checking valid or invalid if status==0 means valid if status==1 means invalid
         if($status==0){
-            sendmailWithoutAttachment($un,$body,$subject,$email); 
+            sendmailWithoutAttachment($un,$body,$subject,$email,$EmailID[$index]); 
         }
         if($status==1){
            
@@ -176,7 +177,7 @@ else{
             // echo "and valid" .$email;
             $query3="insert into viemails(email,status) values('$email','0')";
             $result3 = mysqli_query($conn,$query3);
-            sendmailWithoutAttachment($un,$body,$subject,$email); 
+            sendmailWithoutAttachment($un,$body,$subject,$email,$EmailList[$index]); 
         }
         if($verification->result_integer==1){//invalid valid
             // echo "and invalid" .$email;
@@ -232,12 +233,13 @@ else{
 
 
 //functions
-function sendmailWithoutAttachment($user,$body,$subject,$email){
+function sendmailWithoutAttachment($user,$body,$subject,$email,$email_id){
     global $not_valid_emails;
     global $emails_send;
     global $track_code_array;
     global $base_url;
     global $s_id;
+    
 
     //always generating unique number
     $value=getUniquenumber();
@@ -292,7 +294,7 @@ $mail->isHTML(true);
 
 
 
-
+$body.='<center><a href="'.$base_url.'unsubscribe.php?eid='.$email_id.'">Unsubscribe</a></center>';
 $mail->Subject=$subject;
 $mail->Body=$body;
 if($mail->send()){
@@ -313,7 +315,7 @@ else{
 
 
 //attachment
-function sendmailwithAttachment($user,$body,$subject,$email){
+function sendmailwithAttachment($user,$body,$subject,$email,$email_id){
     global $not_valid_emails;
     global $emails_send;
     global $track_code_array;
@@ -367,6 +369,7 @@ font-size: 16px;
 margin: 4px 2px;
 cursor: pointer;">Mark As Read</a>
 <p style="color:blue;font-size:20px;">&copy;2019 by Campaing Bird</p></center>';
+$body.='<center><a href="'.$base_url.'unsubscribe.php?eid='.$email_id.'">Unsubscribe</a></center>';
 
 
 

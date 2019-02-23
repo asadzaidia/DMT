@@ -81,13 +81,17 @@ input[type="file"] {
           if($s_type==1){
             //getting emails of that segment
 
-            $query = "select Email from email_type where segment_id=$s_id";
+            $query = "select EID,Email from email_type where segment_id=$s_id";
             $result = mysqli_query($conn,$query);
             $EmailList = array();
-            while($row = mysqli_fetch_assoc($result)) { 
+            $EmailID=array();
+            while($row = mysqli_fetch_assoc($result)) {
+              $EmailID[]=$row['EID']; 
               $EmailList[] = $row['Email']; 
+              
           }
-          
+      
+         
             // print_r($EmailList); // to check if the results have been saved in the variable
            
             
