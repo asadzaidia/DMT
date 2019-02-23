@@ -1,17 +1,22 @@
 <?php
 
-include('functions/verifyEmail.php');
-$vmail = new verifyEmail(); 
-$vmail->setStreamTimeoutWait(50); 
-$vmail->Debugoutput= 'html';
-$email='asadzaidi625@hotmail.com';
+include('functions/emailvalidator/examples/single-check.php');
 
-if($vmail->check($email)){
-    echo "valid email";   
-}
-else{
-    echo "not valid email";
-}
+$verification = \NeverBounce\Single::check('kkk@gmail.com', true, true);
+echo $verification->result_integer;
+echo ('Text Code: ' . $verification->result);
+
+// $vmail = new verifyEmail(); 
+// $vmail->setStreamTimeoutWait(50); 
+// $vmail->Debugoutput= 'html';
+// $email='asadzaidi625@hotmail.com';
+
+// if($vmail->check($email)){
+//     echo "valid email";   
+// }
+// else{
+//     echo "not valid email";
+// }
 
 // require 'user_area/phpmailer/PHPMailerAutoload.php';
 // $mail=new PHPMailer(true);//exception handling

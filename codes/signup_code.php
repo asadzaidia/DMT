@@ -2,11 +2,9 @@
 <?php
 include('connection/conn.php');
 include('functions/function.php');
-include_once ('functions/verifyEmail.php');
-$vmail = new verifyEmail(); 
-        $vmail->setStreamTimeoutWait(20); 
-        $vmail->Debug= TRUE; 
-        $vmail->Debugoutput= 'html'; 
+
+include('functions/emailvalidator/examples/single-check.php');
+
 
 if(isset($_POST['register'])){
 
@@ -36,12 +34,6 @@ if(isset($_POST['register'])){
 
 	   elseif (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
    		$err = "Invalid email";
-     	echo "<script>var error=document.getElementById('result');
-    	error.innerHTML='$err';</script>"; 
-		}
-
-		elseif(!$vmail->check($email)){
-		$err = "Email is not exists in real world";
      	echo "<script>var error=document.getElementById('result');
     	error.innerHTML='$err';</script>"; 
 		}
@@ -92,24 +84,85 @@ if(isset($_POST['register'])){
 
 				//due to stroed procedure i am clearing buffer
 				$results->close();
-    			$conn->next_result();
-				
-				
+				$conn->next_result();
+				//now checking email exist in real world or not
+				$status;
+    			$queryc="select status from viemails where email='$email'";
+    			$resultc = mysqli_query($conn,$queryc);
 
-				$inserting="insert into registers(username,email,password) values('$username','$email','$more_secure')";
+    
+    			$check=mysqli_num_rows($resultc);
+				if($check>0){
+					while($rowsd = mysqli_fetch_array($resultc)) { 
+						$status= $rowsd['status'];
+						 
+				  }
+				  if($status==0){
+					$inserting="insert into registers(username,email,password) values('$username','$email','$more_secure')";
 
 
-				$runq_3=mysqli_query($conn,$inserting);
+					$runq_3=mysqli_query($conn,$inserting);
+	
+					if($runq_3){
+						$_SESSION['username']=$username;
+					echo "<script>window.open('user_area/index.php','_self')</script>";
+					
+					}
+	
+					else{
+						echo mysqli_error($conn);
+					}
+				  }
 
-				if($runq_3){
-					$_SESSION['username']=$username;
-				echo "<script>window.open('user_area/index.php','_self')</script>";
-				
+				  if($status==1){
+					$err = "Email is not exists in real world";
+     				echo "<script>var error=document.getElementById('result');
+					error.innerHTML='$err';</script>"; 	
+				}	
+			
 				}
-
 				else{
-					echo mysqli_error($conn);
+					// echo "Not already exist";
+				$verification = \NeverBounce\Single::check($email, true, true);
+				//checking valid or invalid
+				if($verification->result_integer==1){//invalid valid
+
+
+					$query3="insert into viemails(email,status) values('$email','1')";
+					$result3 = mysqli_query($conn,$query3);
+
+					$err = "Email is not exists in real world";
+     				echo "<script>var error=document.getElementById('result');
+					error.innerHTML='$err';</script>";   
 				}
+				if($verification->result_integer==0){//valid
+					$queryin="insert into viemails(email,status) values('$email','0')";
+            		$resultin = mysqli_query($conn,$queryin);
+
+
+					$inserting="insert into registers(username,email,password) values('$username','$email','$more_secure')";
+
+
+					$runq_3=mysqli_query($conn,$inserting);
+	
+					if($runq_3){
+						$_SESSION['username']=$username;
+					echo "<script>window.open('user_area/index.php','_self')</script>";
+					
+					}
+	
+					else{
+						echo mysqli_error($conn);
+					}		
+
+				}
+		
+		
+			}
+				
+				
+
+				
 
 			}
 		}

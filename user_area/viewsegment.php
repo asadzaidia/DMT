@@ -2,10 +2,8 @@
 session_start();
 include('../connection/conn.php');
 include('../functions/function.php');
-include('../functions/verifyEmail.php');
-$vmail = new verifyEmail(); 
-$vmail->setStreamTimeoutWait(50); 
-$vmail->Debugoutput= 'html';
+include('../functions/emailvalidator/examples/single-check.php');
+
 
 //getting id from function getID which used SP
 if(isset($_SESSION['username'])){
@@ -52,15 +50,19 @@ if(isset($_SESSION['username'])){
         <div class="row">
         <h3><?php echo $segment_name;?></h3>
         <span><p>Created On: <?php echo $segment_created;?></p></span>
-
         <hr>
+        <div id="wait" style="display:none;">
+          	<center><img src="../images/loader.gif" height="50" width="50" alt="loader"/></center>
+        </div>
             <div class="panel panel-default">
                     <div class="panel-body">
+                    <div class="table-responsive">
                     <table class="table">
                             <thead>
                               <tr>
-                                <th> <h3><strong>Contacts</strong></h3></th>
-                                <th><h3><strong>Subscribed On</strong></h3></th>
+                                <th> <h4><strong>Contacts</strong></h4></th>
+                                <th><h4><strong>Subscribed On</strong></h4></th>
+                                <th></th>
                                
                               </tr>
                             </thead>
@@ -71,18 +73,58 @@ if(isset($_SESSION['username'])){
 
 
                                     if($segment_type_id==1){
-                                        //from email type segment
-                                        $sql2= "select * from email_type where segment_id='$s_id'";
-                                        $run2=mysqli_query($conn,$sql2);
-                                        $label='';
-                                    while($row=mysqli_fetch_array($run2)){
-                                        if(@!$vmail->check($row['Email'])){
-                                            $label='<span class="label label-danger">Invalid</span>';
-                                            
-                                        }
-                                        else{
-                                            $label='<span class="label label-success">Valid</span>'; 
-                                        }
+                                        $status;
+                    //from email type segment
+                    $sql2= "select * from email_type where segment_id='$s_id'";
+                    $run2=mysqli_query($conn,$sql2);
+                    $label='';
+                    
+                    while($row=mysqli_fetch_array($run2)){
+                    
+                $email=$row['Email'];
+                $query2="select status from viemails where email='$email'";
+                $result2 = mysqli_query($conn,$query2);
+                $check=mysqli_num_rows($result2);
+            //if email already exist then we get directly valid or invalid status
+                            if($check>0){
+                      while($rows = mysqli_fetch_array($result2)) { 
+                        $status= $rows['status'];
+             
+                     }
+
+        
+        
+        //now checking valid or invalid if status==0 means valid if status==1 means invalid
+        if($status==0){
+            $label='<span class="label label-success">Valid</span>';
+             
+        }
+        if($status==1){
+            $label='<span class="label label-danger">Invalid</span>';
+    }
+
+    }
+        //if emails is not in vitable then we have to check and save into our table for future
+        else{
+            // echo "Not already exist";
+        $verification = \NeverBounce\Single::check($email, true, true);
+        //checking valid or invalid
+        if($verification->result_integer==0){//means valid
+            
+            $query3="insert into viemails(email,status) values('$email','0')";
+            $result3 = mysqli_query($conn,$query3);
+            $label='<span class="label label-success">Valid</span>';  
+        }
+        if($verification->result_integer==1){//invalid valid
+            // echo "and invalid" .$email;
+            $query3="insert into viemails(email,status) values('$email','1')";
+            $result3 = mysqli_query($conn,$query3);
+            $label='<span class="label label-danger">Invalid</span>';  
+        }
+
+
+    }
+
 
                                         $a=$row['Email'];
                                         $b=date("d-M-y", strtotime($row['registerdates']));
@@ -90,7 +132,7 @@ if(isset($_SESSION['username'])){
 
                                         echo "
                                         <tr id='delete$c'>
-                                        <td>$a       $label</td>
+                                        <td>$a    $label</td>
                                         <td>$b</td>
                                         <td><span><button class='btn btn-danger' 
                                         style='border-radius:0px;text-decoration: none;' value='$c'
@@ -106,6 +148,7 @@ if(isset($_SESSION['username'])){
                                         $sql2= "select * from mobile_type where segment_id='$s_id'";
                                         $run2=mysqli_query($conn,$sql2);
                                         $label='';
+                                        
                          
                                     while($row=mysqli_fetch_array($run2)){
                                         
@@ -129,6 +172,7 @@ if(isset($_SESSION['username'])){
                                         onclick='getMID(this.value)'>Delete</button></span></td>
                                         </tr>
                                          ";
+                                       
 
                                      }
 
@@ -138,6 +182,7 @@ if(isset($_SESSION['username'])){
                                
                             </tbody>
                           </table>
+                          </div>
                 </div>
             </div>
         </div>
@@ -159,5 +204,15 @@ if(isset($_SESSION['username'])){
   </html>
 
 <script src="js/mobile_email_delete.js"></script>
+<script>
+$(document).ready(function(){
+  $(document).ajaxStart(function(){
+     $("#wait").css("display", "block");
+ });
+      $(document).ajaxComplete(function(){
+       $("#wait").css("display", "none");
+ });
+});
+</script>
 
   

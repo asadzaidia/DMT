@@ -78,7 +78,7 @@ if(isset($_SESSION['username'])){
                               <div class='panel-heading' style='background-color:#cc99ff;'>
                               <label style='background:red;'>Campaign Content!</label>
                               </div>
-                              <div class='panel-body' style='min-height: 430px; max-height: 430px;overflow-y: scroll;'>
+                              <div class='panel-body' style='min-height: 430px; max-height: 430px;overflow-y: auto;'>
                                <h4>Dated: $start_date</h4>
                                <hr/>
                                <br />
@@ -96,7 +96,7 @@ if(isset($_SESSION['username'])){
                                         <label style='background:red;'>Duplicate Emails!</label>
                                       </div>
                                       <div class='panel-body'
-                                       style='min-height: 170px; max-height: 170px;overflow-y: scroll;'>
+                                       style='min-height: 170px; max-height: 170px;overflow-y: auto;'>
                                        <ul class='list-group'>";
                                     
                                     
@@ -152,7 +152,7 @@ if(isset($_SESSION['username'])){
                                         <label style='background:red;'>Emails Not Send!</label>
                                       </div>
                                       <div class='panel-body'
-                                       style='min-height: 170px; max-height: 170px;overflow-y: scroll;'>
+                                       style='min-height: 170px; max-height: 170px;overflow-y: auto;'>
                                     ";
                                        
                                         
@@ -209,7 +209,7 @@ if(isset($_SESSION['username'])){
                    
                     </div>
 
-                    <div class='panel-body' style='min-height: 350px; max-height: 350px;overflow-y: scroll;'>
+                    <div class='panel-body' style='min-height: 350px; max-height: 350px;overflow-y: auto;'>
 
                         <table class='table'>
                             <thead>
@@ -300,7 +300,7 @@ if(isset($_SESSION['username'])){
                               <div class='panel-heading' style='background-color:#cc99ff;'>
                               <label style='background:red;'>Message Content!</label>
                               </div>
-                              <div class='panel-body' style='min-height: 430px; max-height: 430px;overflow-y: scroll;'>
+                              <div class='panel-body' style='min-height: 430px; max-height: 430px;overflow-y: auto;'>
                                <h4>Dated: $start_date</h4>
                                <hr/>
                                <br />
@@ -318,7 +318,7 @@ if(isset($_SESSION['username'])){
                                         <label style='background:red;'>Duplicate Phone Numbers!</label>
                                       </div>
                                       <div class='panel-body'
-                                       style='min-height: 170px; max-height: 170px;overflow-y: scroll;'>
+                                       style='min-height: 170px; max-height: 170px;overflow-y: auto;'>
                                        <ul class='list-group'>";
                                     
                                     
@@ -369,7 +369,7 @@ if(isset($_SESSION['username'])){
                                         <label style='background:red;'>Messange Not Send To!</label>
                                       </div>
                                       <div class='panel-body'
-                                       style='min-height: 170px; max-height: 170px;overflow-y: scroll;'>
+                                       style='min-height: 170px; max-height: 170px;overflow-y: auto;'>
                                     ";
                                        
                                         

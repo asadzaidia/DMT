@@ -1,12 +1,10 @@
 <?php
-include('../functions/verifyEmail.php');
-$vmail = new verifyEmail(); 
-$vmail->setStreamTimeoutWait(50); 
-$vmail->Debugoutput= 'html';
-//valid and invalid email counts
+include('../functions/emailvalidator/examples/single-check.php');
+
 $valid_emails=array();
 $invalid_emails=array();
 $countvalidinvalid=array();
+
 
 $query = "select Email from email_type where segment_id=$s_id";
             $result = mysqli_query($conn,$query);
@@ -14,16 +12,61 @@ $query = "select Email from email_type where segment_id=$s_id";
             while($row = mysqli_fetch_assoc($result)) { 
               $EmailList[] = $row['Email']; 
 }
+///1 mean invalid 0 mean valid
 
 foreach($EmailList as $email){
-    if(@!$vmail->check($email)){
+    $status;
+    $query2="select status from viemails where email='$email'";
+    $result2 = mysqli_query($conn,$query2);
 
-        $invalid_emails[]=$email;
-    } 
-    else{
-        $valid_emails[]=$email;
-    } 
+    
+    $check=mysqli_num_rows($result2);
+    // debug_to_console($check);
+
+    //if email already exist then we get directly valid or invalid status
+    if($check>0){
+        // echo "Already exist";
+
+        while($rows = mysqli_fetch_array($result2)) { 
+            $status= $rows['status'];
+            // debug_to_console($status); 
+      }
+
+        
+        
+        //now checking valid or invalid if status==0 means valid if status==1 means invalid
+        if($status==0){
+            // echo "and valid" .$email;
+            $valid_emails[]=$email;
+        }
+        if($status==1){
+            // echo "and invalid" .$email;
+            $invalid_emails[]=$email;
+    }
+    }
+        //if emails is not in vitable then we have to check and save into our table for future
+        else{
+            // echo "Not already exist";
+        $verification = \NeverBounce\Single::check($email, true, true);
+        //checking valid or invalid
+        if($verification->result_integer==0){//means valid
+            // echo "and valid" .$email;
+            $query3="insert into viemails(email,status) values('$email','0')";
+            $result3 = mysqli_query($conn,$query3);
+            $valid_emails[]=$email;   
+        }
+        if($verification->result_integer==1){//invalid valid
+            // echo "and invalid" .$email;
+            $query3="insert into viemails(email,status) values('$email','1')";
+            $result3 = mysqli_query($conn,$query3);
+            $invalid_emails[]=$email;   
+        }
+
+
+    }
+
 }
+
 $countvalidinvalid[]=sizeof($invalid_emails);
 $countvalidinvalid[]=sizeof($valid_emails);
 $sid_crypted=url_crypt($s_id,'e');

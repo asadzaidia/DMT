@@ -2,7 +2,7 @@
 <?php
 // include('../connection/conn.php');
 // include('../functions/function.php');
-include('../functions/verifyEmail.php');
+include('../functions/emailvalidator/examples/single-check.php');
 @session_start();
 if(isset($_SESSION['username'])){
 }else{
@@ -15,11 +15,9 @@ $not_valid_emails="Emails Not send:";
 $emails_send=array();
 $track_code_array=array();
 
-$vmail = new verifyEmail(); 
-$vmail->setStreamTimeoutWait(50); 
+
 $id= getID($aa);
-// $vmail->Debug= TRUE; 
-$vmail->Debugoutput= 'html';
+
 $base_url='http://campaignbird.tk/user_area/';
 
 
@@ -51,18 +49,54 @@ if(isset($_POST['send-mail'])){
 
 if(strlen($test)>0){
     foreach($EmailList as $email){
-       
-        
-        if(!$vmail->check($email)){
+    $status;
+    $query2="select status from viemails where email='$email'";
+    $result2 = mysqli_query($conn,$query2);
+
+
+    $check=mysqli_num_rows($result2);
+
+       //if email already exist then we get directly valid or invalid status
+        if($check>0){
+        while($rows = mysqli_fetch_array($result2)) { 
+        $status= $rows['status'];
+   
+    }
+
     
-            $not_valid_emails.=$email." ";
+    
+    //now checking valid or invalid if status==0 means valid if status==1 means invalid
+    if($status==0){
+        sendmailwithAttachment($un,$body,$subject,$email); 
+    }
+    if($status==1){
+       
+        $not_valid_emails.=$email." ";
             continue;
-        
-            }
-            else{
-                sendmailwithAttachment($un,$body,$subject,$email);
-             
-        }
+}
+}
+    //if emails is not in available then we have to check and save into our table for future
+    else{
+        // echo "Not already exist";
+    $verification = \NeverBounce\Single::check($email, true, true);
+    //checking valid or invalid
+    if($verification->result_integer==0){//means valid
+        // echo "and valid" .$email;
+        $query3="insert into viemails(email,status) values('$email','0')";
+        $result3 = mysqli_query($conn,$query3);
+        sendmailwithAttachment($un,$body,$subject,$email);  
+    }
+    if($verification->result_integer==1){//invalid valid
+        // echo "and invalid" .$email;
+        $query3="insert into viemails(email,status) values('$email','1')";
+        $result3 = mysqli_query($conn,$query3);
+        $not_valid_emails.=$email." ";
+            continue;   
+    }
+
+
+}
+
             
         }
         
@@ -105,20 +139,59 @@ if(strlen($test)>0){
 
 }
 else{
+
     foreach($EmailList as $email){
-        
-        if(!$vmail->check($email)){
+        $status;
+        $query2="select status from viemails where email='$email'";
+        $result2 = mysqli_query($conn,$query2);
     
-            $not_valid_emails.=$email." ";
-            continue;
-        
-            }
-            else{
-                sendmailWithoutAttachment($un,$body,$subject,$email);
-             
+    
+        $check=mysqli_num_rows($result2);
+    
+           //if email already exist then we get directly valid or invalid status
+            if($check>0){
+            while($rows = mysqli_fetch_array($result2)) { 
+            $status= $rows['status'];
+       
         }
-            
-        } 
+    
+        
+        
+        //now checking valid or invalid if status==0 means valid if status==1 means invalid
+        if($status==0){
+            sendmailWithoutAttachment($un,$body,$subject,$email); 
+        }
+        if($status==1){
+           
+            $not_valid_emails.=$email." ";
+                continue;
+    }
+    }
+        //if emails is not in available then we have to check and save into our table for future
+        else{
+            // echo "Not already exist";
+        $verification = \NeverBounce\Single::check($email, true, true);
+        //checking valid or invalid
+        if($verification->result_integer==0){//means valid
+            // echo "and valid" .$email;
+            $query3="insert into viemails(email,status) values('$email','0')";
+            $result3 = mysqli_query($conn,$query3);
+            sendmailWithoutAttachment($un,$body,$subject,$email); 
+        }
+        if($verification->result_integer==1){//invalid valid
+            // echo "and invalid" .$email;
+            $query3="insert into viemails(email,status) values('$email','1')";
+            $result3 = mysqli_query($conn,$query3);
+            $not_valid_emails.=$email." ";
+                continue;   
+        }
+    
+    
+    }
+    
+                
+            }
+
 
         //inserting into campaign table after successfully send campaign
        
@@ -203,7 +276,7 @@ $mail->isHTML(true);
 //  width="1" height="1" alt="Campaign Bird"/></a>';
 // $body.='<img src="'.$base_url.'email_track.php?code='.$track_code.'"
 // width="1" height="1" alt="Campaign Bird"/>';
- $body.='<center><a href="'.$base_url.'email_track.php?code='.$track_code.'"
+ $body.='<center><a href="'.$base_url.'addd.php?code='.$track_code.'"
  style="background-color: #4CAF50;
  border: none;
  color: white;
@@ -282,7 +355,7 @@ $mail->setFrom('campaignbird@gmail.com',$user);//Sent from //user name
 
 $mail->isHTML(true);
 
-$body.='<center><a href="'.$base_url.'email_track.php?code='.$track_code.'"
+$body.='<center><a href="'.$base_url.'addd.php?code='.$track_code.'"
 style="background-color: #4CAF50;
 border: none;
 color: white;

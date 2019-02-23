@@ -205,7 +205,7 @@ if(isset($_SESSION['username'])){
 						<span class='dropdown' style='margin-top:-8px;'>
 								<button class='btn btn-primary dropdown-toggle' style='margin-top:-20px;' type='button' data-toggle='dropdown'>
 								<span class='caret'></span></button>
-								<ul class='dropdown-menu'>
+								<ul class='dropdown-menu pull-right' >
 								  <li><a href='deletesegment.php?a=$sid_crypted'>Delete Segment</a></li>
 								  <li><a href='viewsegment.php?a=$sid_crypted'>View Segment</a></li>
 								  <li role='separator' class='divider'></li>

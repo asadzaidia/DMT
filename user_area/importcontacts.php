@@ -94,18 +94,34 @@ if(isset($_SESSION['username'])){
         $members=explode(",",$fileContent);
         if($s_type==1){
             foreach($members as $m){
+                $m = trim(preg_replace('/\s+/',' ', $m));
+                if(empty($m)){
+                    continue;
+                    
+                }else{
                 $query="insert into email_type(segment_id,Email,registerdates)
                 values('$s_id','$m',NOW())";
                 $run=mysqli_query($conn,$query);
+                }
             }
             echo "<script>window.open('segment.php?success=Subscribers Added','_self')</script>";
 
         }
         if($s_type==2){
             foreach($members as $m){
-                $query="insert into mobile_type(segment_id,Number,registerdate)
+                
+                $m = trim(preg_replace('/\s+/',' ', $m));
+               
+                if(empty($m)){
+                    continue;
+                    
+                }else{
+                    $query="insert into mobile_type(segment_id,Number,registerdate)
                 values('$s_id','$m',NOW())";
                 $run=mysqli_query($conn,$query);
+                
+                }
+                
             }
             echo "<script>window.open('segment.php?success=Subscribers Added','_self')</script>";
 

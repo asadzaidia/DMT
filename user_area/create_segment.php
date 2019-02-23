@@ -33,6 +33,9 @@ if(isset($_SESSION['username'])){
              
             <h1 style="margin-top:90px;">Create New Segment</h1>
             <hr class="hr-style" />
+            <div id="wait" style="display:none;">
+          	<center><img src="../images/loader.gif" height="50" width="50" alt="loader"/></center>
+            </div>
             <h1 class="label label-danger" id="err"></h1>
         
         </center>
@@ -85,6 +88,16 @@ if(isset($_SESSION['username'])){
 
                 <?php include('UserAreaIncludes/inside_footer.php');?> 
           </div>
+          <script>
+$(document).ready(function(){
+  $(document).ajaxStart(function(){
+     $("#wait").css("display", "block");
+ });
+      $(document).ajaxComplete(function(){
+       $("#wait").css("display", "none");
+ });
+});
+</script>
    
 </body>
 
